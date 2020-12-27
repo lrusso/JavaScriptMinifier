@@ -2,6 +2,8 @@
 
 JavaScript Minifier.
 
+![alt screenshot](https://raw.githubusercontent.com/lrusso/JavaScriptMinifier/master/JavaScriptMinifier.png)
+
 ## Web:
 
 https://lrusso.github.io/JavaScriptMinifier/JavaScriptMinifier.htm

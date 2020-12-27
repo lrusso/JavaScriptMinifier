@@ -61,6 +61,12 @@
 					// ENABLING THE IN TEXTAREA
 					document.getElementById("in").disabled = false;
 
+					// SHOWING THE "MINIFY" BUTTON
+					document.getElementById("btn-go").style.display = "inline-block";
+
+					// SHOWING THE "CLEAR" BUTTON
+					document.getElementById("btn-clear").style.display = "inline-block";
+
 					// FOCUSING THE OUT TEXTAREA
 					document.getElementById("out").focus();
 					}
@@ -87,6 +93,15 @@
 					{
 					// DISABLING THE IN TEXTAREA
 					document.getElementById("in").disabled = true;
+
+					// UPDATING THE OUT TEXTAREA
+					document.getElementById("out").value = "Please wait...";
+
+					// HIDING THE "MINIFY" BUTTON
+					document.getElementById("btn-go").style.display = "none";
+
+					// HIDING THE "CLEAR" BUTTON
+					document.getElementById("btn-clear").style.display = "none";
 
 					// SENDING THE CODE TO THE WEB WORKER
 					myWorker.postMessage(document.getElementById("in").value);

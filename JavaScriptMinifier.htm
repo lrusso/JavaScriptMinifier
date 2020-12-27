@@ -74,12 +74,39 @@
 
 					// FOCUSING THE OUT TEXTAREA
 					document.getElementById("out").focus();
+
+					// SELECTING THE OUT TEXTAREA TEXT
+					document.getElementById("out").select();
 					}
 					catch(err)
 					{
 					}
 
 				return true;
+				}
+
+			function minifyCode()
+				{
+				// DISABLING THE IN TEXTAREA
+				document.getElementById("in").disabled = true;
+
+				// ENABLING THE OUT TEXTAREA
+				document.getElementById("out").disabled = false;
+
+				// FOCUSING THE OUT TEXTAREA
+				document.getElementById("out").focus();
+
+				// UPDATING THE OUT TEXTAREA
+				document.getElementById("out").value = "Please wait...";
+
+				// HIDING THE "MINIFY" BUTTON
+				document.getElementById("btn-go").style.display = "none";
+
+				// HIDING THE "CLEAR" BUTTON
+				document.getElementById("btn-clear").style.display = "none";
+
+				// SENDING THE CODE TO THE WEB WORKER
+				myWorker.postMessage(document.getElementById("in").value);
 				}
 
 			window.addEventListener("load", function()
@@ -90,29 +117,17 @@
 				// CLEARING THE OUT TEXTAREA
 				document.getElementById("out").value = "";
 
+				// DISABLING THE OUT TEXTAREA
+				document.getElementById("out").disabled = true;
+
 				// FOCUSING THE IN TEXTAREA
 				document.getElementById("in").focus();
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER CLICKS IN THE "MINIFY" BUTTON
 				document.getElementById("btn-go").addEventListener("click",function(event)
 					{
-					// DISABLING THE IN TEXTAREA
-					document.getElementById("in").disabled = true;
-
-					// ENABLING THE OUT TEXTAREA
-					document.getElementById("out").disabled = false;
-
-					// UPDATING THE OUT TEXTAREA
-					document.getElementById("out").value = "Please wait...";
-
-					// HIDING THE "MINIFY" BUTTON
-					document.getElementById("btn-go").style.display = "none";
-
-					// HIDING THE "CLEAR" BUTTON
-					document.getElementById("btn-clear").style.display = "none";
-
-					// SENDING THE CODE TO THE WEB WORKER
-					myWorker.postMessage(document.getElementById("in").value);
+					// STARTING THE MINIFYING CODE PROCESS
+					minifyCode();
 					});
 
 				// SETTING WHAT WILL HAPPEN WHEN THE USER CLICKS IN THE "CLEAR" BUTTON
@@ -123,6 +138,21 @@
 
 					// CLEARING THE OUT TEXTAREA
 					document.getElementById("out").value = "";
+					});
+
+				document.getElementById("in").addEventListener("paste", function(e)
+					{
+					// CANCELING THE PASTE EVENT
+					e.preventDefault();
+
+					// GETTING THE CLIPBOARD CONTENT AS PLAIN TEXT
+					var text = (e.originalEvent || e).clipboardData.getData("text/plain");
+
+					// UPDATING THE IN TEXTAREA
+					document.getElementById("in").value = text;
+
+					// STARTING THE MINIFYING CODE PROCESS
+					minifyCode();
 					});
 				});
 

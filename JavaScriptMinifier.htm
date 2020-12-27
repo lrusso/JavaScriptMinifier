@@ -42,7 +42,7 @@
 		</div>
 		<div>
 			<span>Minified Output</span>
-			<textarea id="out" spellcheck="false" rows="25" cols="80" readonly></textarea>
+			<textarea id="out" spellcheck="false" rows="25" cols="80" readonly disabled></textarea>
 		</div>
 		<div>
 			<button id="btn-go">Minify</button>
@@ -98,6 +98,9 @@
 					{
 					// DISABLING THE IN TEXTAREA
 					document.getElementById("in").disabled = true;
+
+					// ENABLING THE OUT TEXTAREA
+					document.getElementById("out").disabled = false;
 
 					// UPDATING THE OUT TEXTAREA
 					document.getElementById("out").value = "Please wait...";

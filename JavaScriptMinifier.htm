@@ -22,7 +22,8 @@
 			html,body{background-color:#f7fafc;font-family:Arial;-webkit-user-select:none;-moz-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;touch-action:none}
 			div{display:inline-block;width:48%;margin-right:1%}
 			span{display:inline-block;width:100%;font-size:30px;margin-bottom:10px;color:#2d3748;cursor:default}
-			textarea{display:inline-block;width:100%;border:1px solid #e2e8f0}
+			textarea{display:inline-block;background-color:white;border:1px solid #e2e8f0;width:100%;resize:none}
+			textarea:disabled{background-color:#CECECE;border:1px solid #e2e8f0}
 			#btn-go{width:90px;background-color:#4299e1;border:1px solid #4299e1;border-radius:7px;font-size:15px;font-weight:bold;color:white;line-height:2.5;margin-top:10px;cursor:pointer}
 			#btn-go:hover{background-color:#3182ce;border:1px solid #3182ce}
 			#btn-clear{width:90px;background-color:#38b2ac;border:1px solid #38b2ac;border-radius:7px;font-size:15px;font-weight:bold;color:white;line-height:2.5;margin-top:10px;cursor:pointer}
@@ -36,7 +37,7 @@
 		</div>
 		<div>
 			<span>Minified Output</span>
-			<textarea id="out" spellcheck="false" rows="25" cols="80"></textarea>
+			<textarea id="out" spellcheck="false" rows="25" cols="80" readonly></textarea>
 		</div>
 		<div>
 			<button id="btn-go">Minify</button>
@@ -56,6 +57,12 @@
 
 					// SHOWING THE DATA SENT FROM THE WEB WORKER
 					document.getElementById("out").value = myReceivedData;
+
+					// ENABLING THE IN TEXTAREA
+					document.getElementById("in").disabled = false;
+
+					// FOCUSING THE OUT TEXTAREA
+					document.getElementById("out").focus();
 					}
 					catch(err)
 					{
@@ -78,6 +85,9 @@
 				// SETTING WHAT WILL HAPPEN WHEN THE USER CLICKS IN THE "MINIFY" BUTTON
 				document.getElementById("btn-go").addEventListener("click",function(event)
 					{
+					// DISABLING THE IN TEXTAREA
+					document.getElementById("in").disabled = true;
+
 					// SENDING THE CODE TO THE WEB WORKER
 					myWorker.postMessage(document.getElementById("in").value);
 					});

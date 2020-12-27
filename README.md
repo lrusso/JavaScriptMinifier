@@ -2,7 +2,7 @@
 
 JavaScript Minifier.
 
-![alt screenshot](https://raw.githubusercontent.com/lrusso/JavaScriptMinifier/master/JavaScriptMinifier.png)
+![alt screenshot](https://raw.githubusercontent.com/lrusso/JavaScriptMinifier/main/JavaScriptMinifier.png)
 
 ## Web:
 

@@ -1,4 +1,5 @@
 const filesToCache = [
+	"JavaScriptMinifier.css",
 	"JavaScriptMinifier.htm",
 	"JavaScriptMinifier.js",
 	"JavaScriptMinifier.json",
